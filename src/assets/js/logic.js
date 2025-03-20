@@ -22,7 +22,6 @@ const addRecent = search => {
 
 /**
  * Renders the list of recent searches stored in local storage to the page.
- *
  * Looks up the 'recentSearches' key in local storage and appends a button for each item in the array to the #history div.
  */
 const renderRecentSearches = () => {
