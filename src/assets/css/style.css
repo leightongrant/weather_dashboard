@@ -1,0 +1,220 @@
+/*
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vanilla:hover {
+  filter: drop-shadow(0 0 2em #f7df1eaa);
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+*/
+
+li {
+	list-style: none;
+}
+
+ul {
+	padding-left: 0;
+}
+
+.remove {
+	background: white;
+	color: darkgrey;
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+	font-size: 14px;
+}
+
+.remove:hover {
+	color: darkred;
+	cursor: default;
+}
+
+button {
+	display: flex;
+	align-items: center;
+}
+
+.state-04d {
+	background: url('../images/broken-clouds.jpg');
+}
+
+.state-10d {
+	background: url('../images/rainy.jpg');
+}
+
+.state-02d {
+	background: url('../images/scattered-clouds.jpg');
+}
+
+.state-03d {
+	background: url('../images/few-clouds.jpg');
+}
+
+.state-13d {
+	background: url('../images/snow.jpg');
+}
+
+.state-01d {
+	background: url('../images/sunshine.jpg');
+}
+
+.state-04d,
+.state-10d,
+.state-02d,
+.state-03d,
+.state-13d,
+.state-01d {
+	background-size: cover;
+	background-position: center;
+	font-weight: bold;
+	color: #212122;
+}
+
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+}
+
+.bg-blue {
+	background-color: #003060;
+}
+
+/* JQuery-UI overrides
+----------------------------------*/
+.ui-widget {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 0.8em;
+}
+
+.ui-widget .ui-widget {
+	font-size: 1em;
+}
+
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 1em;
+}
+
+.ui-widget.ui-widget-content {
+	border: 1px solid #d3d3d3;
+}
+
+.ui-widget-content {
+	border: 1px solid #aaaaaa;
+	background: #565e64;
+	color: #fff;
+	border-radius: 15px;
+	margin-top: 5px;
+}
+
+.ui-widget-content a {
+	color: #222222;
+}
+
+.ui-widget-header {
+	border: 1px solid #aaaaaa;
+	background: #cccccc url('images/ui-bg_highlight-soft_75_cccccc_1x100.png') 50%
+		50% repeat-x;
+	color: #222222;
+	font-weight: bold;
+}
+
+.ui-widget-header a {
+	color: #222222;
+}
