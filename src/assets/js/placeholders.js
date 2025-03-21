@@ -94,6 +94,16 @@ const placeholder = `
 
 `
 
-const spinner = `<div class="container"><div class="row"><div class="col"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div></div></div>`
+const spinner = `
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-center spinner-wrapper align-items-center">
+                <div class="spinner-border" role="status">
+                 <span class="sr-only">Loading...</span>
+               </div>
+            </div>
+        </div>
+    </div>
+  `
 
-export { placeholder }
+export { placeholder, spinner }

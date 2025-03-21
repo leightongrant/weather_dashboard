@@ -1,5 +1,5 @@
 import { cities } from './cities.js'
-import { placeholder } from './placeholders.js'
+import { placeholder, spinner } from './placeholders.js'
 
 const id = import.meta.env.VITE_APP_ID
 
@@ -13,7 +13,7 @@ const addRecent = search => {
 
 	let button = ''
 	if (!recent.includes(search)) {
-		button = `<button type="button" class="btn btn-secondary d-flex justify-content-between">${search}<span
+		button = `<button type="button" class="btn btn-sm btn-history  d-flex gap-2 justify-content-between align-items-center">${search}<span
 		    class="fa fa-times remove"></span></button>`
 	}
 
@@ -31,7 +31,7 @@ const renderRecentSearches = () => {
 
 	let button = ''
 	for (let i = 0; i < recent.length; i++) {
-		button += `<button type="button" class="btn btn-secondary d-flex justify-content-between">${recent[i]}<span
+		button += `<button type="button" class="btn btn-sm btn-history d-flex gap-2 justify-content-between align-items-center">${recent[i]}<span
         class="fa fa-times remove"></span></button>`
 	}
 	$(button).appendTo('#history')
@@ -61,28 +61,31 @@ const getForecast = async (lat, lon) => {
 			humidity: item.humidity,
 			temp: item.temp.day.toFixed(1),
 			wind: item.speed.toFixed(1),
+			country: data.city.country,
 		}
 	})
 
 	const today = filterdData[0]
 
+	const highlight = `		
+		<li><i class="owi owi-5x owi-${today.icon}"></i></li>
+		<li>Temp:  ${today.temp} &deg;C</li>
+		<li>Wind:  ${today.wind} KPH</li>
+		<li>Humidity:  ${today.humidity} %</li>	
+	`
+	$('#weatherHighlight').html(highlight)
 	$('.today').addClass(`state-${today.icon}`)
-	$('#cityName').text(`${city}`)
-	$('#todayIcon').html(`<i class="owi owi-5x owi-${today.icon}"></i>`)
-	$('#todayTemp').html(`Temp:  ${today.temp} &deg;C`)
-	$('#todayWind').html(`Wind:  ${today.wind} KPH`)
-	$('#todayHumidity').html(`Humidity:  ${today.humidity} %`)
-	$('#todayDate').text(today.date)
+	$('#todayTitle').text(`${city}, ${today.country} | ${today.date}`)
 
 	let elements = ''
 	filterdData.slice(1).forEach(item => {
-		elements = `<div class="col mb-5">`
-		elements += `<div class="p-3 border border-dark bg-light rounded-3 h-100 state-${item.icon}">`
-		elements += `<p class="date fs-6 fw-bold">${item.date}</p>`
-		elements += `<ul class="weatherData">`
-		elements += `<li><i class='owi owi-4x owi-${item.icon}'></i></li>`
+		elements = `<div class="col">`
+		elements += `<div class="p-3 border border-light bg-light rounded-5 h-100 state-${item.icon}">`
+		elements += `<h3 class="date fs-6 fw-light">${item.date}</h3>`
+		elements += `<ul class="weatherData fw-light">`
+		elements += `<li><i class='owi owi-4x owi-${item.icon} mb-2'></i></li>`
 		elements += `<li>Temp:  ${item.temp} &deg;C</li>`
-		elements += `<li>Wind:  ${item.wind} KPH</li>`
+		elements += `<li>Wind:  ${item.wind} Kph</li>`
 		elements += `<li>Humidity:  ${item.humidity} %</li>`
 		elements += `</ul></div></div>`
 		$('#weatherData').append(elements)
@@ -123,7 +126,8 @@ const renderForecast = async (city = randomChosenCity) => {
 
 // Get user location
 const locate = async () => {
-	$('#weatherData').html(placeholder)
+	$('#weatherData').html(spinner)
+	$('#weatherHighlight').html(spinner)
 	navigator.geolocation.getCurrentPosition(position => {
 		const lat = Math.fround(position.coords.latitude)
 		const lon = Math.fround(position.coords.longitude)

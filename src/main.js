@@ -7,7 +7,7 @@ import {
 	removeSearch,
 	getRandomCity,
 	locate,
-} from './assets/js/logic.js'
+} from './assets/js/utilities.js'
 
 document.querySelector('#app').innerHTML = dashboard()
 
