@@ -8,13 +8,13 @@ const dashboard = () => {
 			</div>
 		</header>
 	
-		<main class="main py-5">
+		<main class="main py-5 px-3">
 			<div
-				class="container dashboard-wrapper rounded-5 shadow-lg"
+				class="container dashboard-wrapper rounded-5 shadow-l"
 			>
 			
-				<div class="row row-cols-1 row-cols-lg-2">
-					<aside class="col-lg-3 search-and-history py-5 px-2">
+				<div class="row">
+					<aside class="col-12 col-sm-5 col-xl-3 search-and-history py-5 px-2">
 						<div class="container">
 							<div class="row">
 								<p id="form-heading" class="mt-1 h3 form-label fs-5">
@@ -78,7 +78,7 @@ const dashboard = () => {
 						</div>
 					</aside>
 
-					<section class="col-lg-9 main-forecast p-5 rounded-5">
+					<section class="col-12 col-sm-7 col-xl-9 main-forecast px-2 py-4 rounded-5">
 						<section id="today" class="" role="region" aria-live="polite">
 							<div class="container">
 								<div class="row">
@@ -91,12 +91,14 @@ const dashboard = () => {
 								<div class="row">
 									<div class="col">
 										<div
-											class="p-3 today border border-light bg-transparent rounded-5 fw-light"
+											class="today border border-light bg-transparent rounded-5 fw-light"
 										>
-											<h2 class="fs-5 fw-light" id="todayTitle">												
-											</h2>
-											<ul id="weatherHighlight">												
-											</ul>
+											<div class="weather-inner p-3 rounded-5 d-grid gap-2">																	
+												<h2 class="fs-5 fw-bold ps-4" id="todayTitle">												
+												</h2>
+												<div id="weatherHighlight">												
+												</div>
+											</div>	
 										</div>
 									</div>
 								</div>
@@ -111,7 +113,7 @@ const dashboard = () => {
 						>							
 							<div class="container">
 								<div
-									class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-5"
+									class="d-flex flex-wrap justify-content-center gap-3"
 									id="weatherData"
 								></div>
 							</div>

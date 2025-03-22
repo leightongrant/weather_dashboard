@@ -68,26 +68,33 @@ const getForecast = async (lat, lon) => {
 	const today = filterdData[0]
 
 	const highlight = `		
-		<li><i class="owi owi-5x owi-${today.icon}"></i></li>
-		<li>Temp:  ${today.temp} &deg;C</li>
-		<li>Wind:  ${today.wind} KPH</li>
-		<li>Humidity:  ${today.humidity} %</li>	
+		<div><img src="https://openweathermap.org/img/wn/${today.icon}@2x.png" alt="${today.description}"/></div>
+		<div class="d-flex gap-3 ps-4">
+			<div><i class="fa-solid fa-temperature-three-quarters"></i>  ${today.temp} &deg;C</div>
+			<div><i class="fa-solid fa-wind"></i>  ${today.wind} KPH</div>
+			<div><i class="fa-solid fa-droplet"></i>  ${today.humidity} %</div>
+		</div>	
 	`
 	$('#weatherHighlight').html(highlight)
 	$('.today').addClass(`state-${today.icon}`)
-	$('#todayTitle').text(`${city}, ${today.country} | ${today.date}`)
+	$('#todayTitle').html(
+		`${city}, ${today.country} | <span class="fw-light">${today.date}</span>`
+	)
 
 	let elements = ''
 	filterdData.slice(1).forEach(item => {
-		elements = `<div class="col">`
-		elements += `<div class="p-3 border border-light bg-light rounded-5 h-100 state-${item.icon}">`
-		elements += `<h3 class="date fs-6 fw-light">${item.date}</h3>`
-		elements += `<ul class="weatherData fw-light">`
-		elements += `<li><i class='owi owi-4x owi-${item.icon} mb-2'></i></li>`
-		elements += `<li>Temp:  ${item.temp} &deg;C</li>`
-		elements += `<li>Wind:  ${item.wind} Kph</li>`
-		elements += `<li>Humidity:  ${item.humidity} %</li>`
-		elements += `</ul></div></div>`
+		elements = `<div class="flex-grow-1">`
+		elements += `<div class="border border-light bg-light  rounded-5 h-100 state-${item.icon}">`
+		elements += `<div class="p-3 rounded-5 weather-inner">`
+		elements += `<h3 class="date fs-6 fw-bold text-center">${item.date}</h3>`
+		elements += `<div class="fs-6 fw-light text-center text-capitalize">${item.description}</div>`
+		elements += `<div class="weatherData fw-light">`
+		elements += `<div><img src="https://openweathermap.org/img/wn/${item.icon}@2x.png" alt="${item.description}"/></div>`
+		elements += `<div class="ps-4">`
+		elements += `<div class="d-flex gap-2 align-items-center"><i class="fa-solid fa-temperature-three-quarters"></i>  ${item.temp} &deg;C</div>`
+		elements += `<div class="d-flex gap-2 align-items-center"><i class="fa-solid fa-wind"></i>  ${item.wind} Kph</div>`
+		elements += `<div class="d-flex gap-2 align-items-center"><i class="fa-solid fa-droplet"></i>  ${item.humidity} %</div>`
+		elements += `</div></div></div></div></div>`
 		$('#weatherData').append(elements)
 	})
 }

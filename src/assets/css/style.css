@@ -73,6 +73,9 @@ ul {
 	background: hsla(200, 52%, 60%, 0.6);
 	color: #212122;
 }
+.weather-inner {
+	backdrop-filter: blur(3px);
+}
 
 button {
 	display: flex;
