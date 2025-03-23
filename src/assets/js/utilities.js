@@ -39,10 +39,10 @@ const renderRecentSearches = () => {
 	if (recent === null || recent.length === 0) return
 
 	let button = ''
-	for (let i = 0; i < recent.length; i++) {
-		button += `<button type="button" class="btn btn-sm btn-history d-flex gap-2 justify-content-between align-items-center">${recent[i]}<span
+	recent.forEach(item => {
+		button += `<button type="button" class="btn btn-sm btn-history d-flex gap-2 justify-content-between align-items-center">${item}<span
         class="fa fa-times remove"></span></button>`
-	}
+	})
 	$(button).appendTo('#history')
 }
 

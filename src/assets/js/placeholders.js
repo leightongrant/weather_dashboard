@@ -105,5 +105,17 @@ const spinner = `
         </div>
     </div>
   `
+const noResults = `
+  <div class="container">
+      <div class="row">
+          <div class="col d-flex justify-content-center spinner-wrapper align-items-center">
+              <div class="d-grid gap-2 align-content-center">
+               <i class="fa-solid fa-cloud-sun fs-1 text-center"></i>
+               <h3 class="text-center fs-5">Please search for a city</h3>
+             </div>
+          </div>
+      </div>
+  </div>
+`
 
-export { placeholder, spinner }
+export { placeholder, spinner, noResults }

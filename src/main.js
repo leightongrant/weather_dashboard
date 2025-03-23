@@ -1,6 +1,7 @@
 import '/src/assets/css/style.css'
 import dashboard from './components/dashboard'
 import { cities } from './assets/js/cities.js'
+import { noResults } from './assets/js/placeholders.js'
 import {
 	renderForecast,
 	renderRecentSearches,
@@ -13,13 +14,21 @@ document.querySelector('#app').innerHTML = dashboard()
 
 $(function () {
 	const searchHistory = JSON.parse(localStorage.getItem('recentSearches'))
+	const recentSearches = JSON.parse(localStorage.getItem('recentSearches'))
+
 	if (searchHistory !== null && searchHistory.length > 0) {
-		renderForecast(searchHistory[searchHistory.length - 1])
-	} else if (navigator.geolocation) {
-		locate()
+		if (searchHistory.length === 1) {
+			renderForecast(searchHistory[0])
+		} else {
+			renderForecast(searchHistory[searchHistory.length - 1])
+		}
+	} else if (searchHistory === null || searchHistory.length === 0) {
+		$('#weatherData').html(noResults)
 	}
 
-	renderRecentSearches()
+	if (recentSearches !== null && recentSearches.length > 0) {
+		renderRecentSearches()
+	}
 
 	$('#citySearch').autocomplete({
 		source: cities,
