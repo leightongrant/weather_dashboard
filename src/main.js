@@ -12,9 +12,13 @@ import {
 document.querySelector('#app').innerHTML = dashboard()
 
 $(function () {
-	// if (navigator.geolocation) {
-	// 	locate()
-	// }
+	const searchHistory = JSON.parse(localStorage.getItem('recentSearches'))
+	if (searchHistory !== null && searchHistory.length > 0) {
+		renderForecast(searchHistory[searchHistory.length - 1])
+	} else if (navigator.geolocation) {
+		locate()
+	}
+
 	renderRecentSearches()
 
 	$('#citySearch').autocomplete({
