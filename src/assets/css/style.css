@@ -23,12 +23,16 @@ body {
 .dashboard-wrapper {
 	color: hsla(0, 0%, 100%, 0.87);
 	background: hsla(200, 52%, 89%, 0.4);
-	backdrop-filter: blur(55px);
 }
 
 .main-forecast {
-	background: hsla(200, 42%, 79%, 0.4);
-	backdrop-filter: blur(55px);
+	background-size: cover;
+	background-position: center;
+}
+.main-forecast-inner {
+	background: hsla(200, 42%, 79%, 0.6);
+	/* backdrop-filter: blur(1px); */
+	min-height: 100%;
 }
 
 li {
@@ -74,7 +78,7 @@ ul {
 	color: #212122;
 }
 .weather-inner {
-	backdrop-filter: blur(3px);
+	backdrop-filter: blur(10px);
 }
 
 button {

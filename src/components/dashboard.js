@@ -78,46 +78,39 @@ const dashboard = () => {
 						</div>
 					</aside>
 
-					<section class="col-12 col-sm-7 col-xl-9 main-forecast px-2 py-4 rounded-5">
-						<section id="today" class="" role="region" aria-live="polite">
-							<div class="container">
-								<div class="row">
-									<div class="col">
-										<div class="alert alert-warning errInfo hide" role="alert">
-											A simple warning alert—check it out!
+					<section class="main-forecast rounded-5 col-12 col-sm-7 col-xl-9 p-0">
+						<div class="main-forecast-inner px-2 py-4 rounded-5">
+							<section id="today" class="" role="region" aria-live="polite">
+								<div class="container">
+									<div class="row">
+										<div class="col">
+											<div class="alert alert-warning errInfo hide" role="alert">
+												A simple warning alert—check it out!
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<div id="weatherHighlight"></div>
 										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col">
-										<div
-											class="today border border-light bg-transparent rounded-5 fw-light"
-										>
-											<div class="weather-inner p-3 rounded-5 d-grid gap-2">																	
-												<h2 class="fs-5 fw-bold ps-4" id="todayTitle">												
-												</h2>
-												<div id="weatherHighlight">												
-												</div>
-											</div>	
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
+							</section>
 
-						<section
-							id="forecast"
-							class="mt-5"
-							role="region"
-							aria-live="polite"
-						>							
-							<div class="container">
-								<div
-									class="d-flex flex-wrap justify-content-center gap-3"
-									id="weatherData"
-								></div>
-							</div>
-						</section>
+							<section
+								id="forecast"
+								class="mt-5"
+								role="region"
+								aria-live="polite"
+							>							
+								<div class="container">
+									<div
+										class="d-flex flex-wrap justify-content-center gap-3"
+										id="weatherData"
+									></div>
+								</div>
+							</section>
+						</div>
 					</section>
 				</div>
 			 

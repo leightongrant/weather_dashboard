@@ -28,6 +28,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     env:
       VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
+      VITE_UNSPLASH_ACCESS_KEY: ${{ secrets.VITE_UNSPLASH_ACCESS_KEY }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

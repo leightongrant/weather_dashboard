@@ -12,9 +12,9 @@ import {
 document.querySelector('#app').innerHTML = dashboard()
 
 $(function () {
-	if (navigator.geolocation) {
-		locate()
-	}
+	// if (navigator.geolocation) {
+	// 	locate()
+	// }
 	renderRecentSearches()
 
 	$('#citySearch').autocomplete({
