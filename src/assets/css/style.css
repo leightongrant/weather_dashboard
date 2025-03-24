@@ -34,6 +34,19 @@ body {
 	/* backdrop-filter: blur(1px); */
 	min-height: 100%;
 }
+.highlight {
+	font-size: 0.75em;
+	min-width: 69px;
+}
+.highlight-container {
+	overflow: hidden;
+	overflow-x: scroll;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none;
+}
+.highlight-container::-webkit-scrollbar {
+	display: none;
+}
 
 li {
 	list-style: none;
