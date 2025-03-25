@@ -127,12 +127,15 @@ export const getCityName = async (lat, lon) => {
 			throw new Error('Network response was not ok')
 		}
 		const data = await response.json()
+		console.log(data.address)
+		const neighbourhood = data.address?.neighbourhood
 		const town = data.address?.town
 		const city = data.address?.city
-		if (!town || !city) {
-			throw new Error('Town/City not found in the response')
+		const county = data.address?.county
+		if (!neighbourhood || !town || !city || !county) {
+			throw new Error('Location not found in the response')
 		}
-		return town || city
+		return neighbourhood || town || city || county
 	} catch (error) {
 		console.error('Error fetching city name:', error)
 		throw error
