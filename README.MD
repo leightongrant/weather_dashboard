@@ -4,7 +4,7 @@
 
 ## Description
 
-The Weather Dashboard is a web application that allows users to search for weather conditions in cities around the world. It provides current weather information as well as a 5-day forecast. The application utilizes the OpenWeatherMap API to fetch weather data.
+A modern weather dashboard built with Vite and JavaScript. This project provides real-time weather data, highlights, and visualizations using APIs like OpenWeather and Unsplash. It features a responsive design, custom weather icons, and dynamic background images based on current weather conditions.
 
 ## Features
 
