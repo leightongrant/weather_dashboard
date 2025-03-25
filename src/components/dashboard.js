@@ -1,5 +1,6 @@
 const dashboard = () => {
 	return `
+	<div class="dashboard-container">
         <header
 			class="header py-2"
 		>
@@ -115,7 +116,13 @@ const dashboard = () => {
 				</div>
 			 
 			</div>
-		</main>       
+		</main>
+		<footer class="footer py-2">
+			<div class="container">
+			<p class="text-center text-light">&copy; 2025 Weather Dashboard</p>
+			</div>
+		</footer> 
+	</div>      
     `
 }
 

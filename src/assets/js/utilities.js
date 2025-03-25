@@ -14,7 +14,7 @@ export const getBackground = async condition => {
 	return req.response.results[randNum].urls.regular
 }
 
-const addRecent = search => {
+export const addRecent = search => {
 	let recent = JSON.parse(localStorage.getItem('recentSearches'))
 
 	if (recent === null) {
@@ -35,7 +35,7 @@ const addRecent = search => {
  * Renders the list of recent searches stored in local storage to the page.
  * Looks up the 'recentSearches' key in local storage and appends a button for each item in the array to the #history div.
  */
-const renderRecentSearches = () => {
+export const renderRecentSearches = () => {
 	const recent = JSON.parse(localStorage.getItem('recentSearches'))
 
 	if (recent === null || recent.length === 0) return
@@ -51,7 +51,7 @@ const renderRecentSearches = () => {
 // If no city searched for or location not allowed, load weather for random city
 const randomChosenCity = cities[Math.floor(Math.random() * cities.length)]
 
-const renderForecast = async (city = randomChosenCity) => {
+export const renderForecast = async (city = randomChosenCity) => {
 	const url = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
 		city
 	)}&limit=6&appid=${id}`
@@ -82,15 +82,26 @@ const renderForecast = async (city = randomChosenCity) => {
 }
 
 // Get user location
-const locate = async () => {
+export const locate = async () => {
+	if (!navigator.geolocation) {
+		alertMessage('Geolocation API not supported in this browser')
+		return
+	}
+
 	$('#weatherData').html(spinner)
 	$('#weatherHighlight').html(spinner)
-	navigator.geolocation.getCurrentPosition(position => {
-		const lat = Math.fround(position.coords.latitude)
-		const lon = Math.fround(position.coords.longitude)
+
+	try {
+		const position = await new Promise((resolve, reject) => {
+			navigator.geolocation.getCurrentPosition(resolve, reject)
+		})
+
+		const { latitude: lat, longitude: lon } = position.coords
+
 		if (!lat || !lon) {
 			throw new Error('Location not found')
 		}
+
 		$('#weatherData').html('')
 		getCityName(lat, lon)
 			.then(name => {
@@ -98,34 +109,53 @@ const locate = async () => {
 			})
 			.catch(err => {
 				console.log(err)
+				alertMessage(err.message)
 			})
-	})
+	} catch (error) {
+		console.log(error)
+		alertMessage(error.message || 'Error fetching location')
+	}
 }
 
-const getCityName = async (lat, lon) => {
-	const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${id}`
-	const response = await fetch(url)
-	const data = await response.json()
-	return data[0].name
+export const getCityName = async (lat, lon) => {
+	try {
+		const url = `https://geocode.maps.co/reverse?lat=${lat}&lon=${lon}&api_key=${
+			import.meta.env.VITE_GEOCODING_API_KEY
+		}`
+		const response = await fetch(url)
+		if (!response.ok) {
+			throw new Error('Network response was not ok')
+		}
+		const data = await response.json()
+		const town = data.address?.town
+		const city = data.address?.city
+		if (!town || !city) {
+			throw new Error('Town/City not found in the response')
+		}
+		return town || city
+	} catch (error) {
+		console.error('Error fetching city name:', error)
+		throw error
+	}
 }
 
-const removeSearch = search => {
+export const removeSearch = search => {
 	const recentSearches = JSON.parse(localStorage.getItem('recentSearches'))
 	const index = recentSearches.indexOf(search)
 	recentSearches.splice(index, 1)
 	localStorage.setItem('recentSearches', JSON.stringify(recentSearches))
 }
 
-const getRandomCity = () => {
+export const getRandomCity = () => {
 	let randNum = Math.floor(Math.random() * cities.length)
 	let randomCity = cities[randNum]
 	renderForecast(randomCity)
 }
 
 // Message alerts
-const alertMessage = () => {
+export const alertMessage = message => {
 	$('.errInfo')
-		.text(`No weather data found!`)
+		.text(message)
 		.fadeIn(1000, function () {
 			$(this)
 				.addClass('show')
@@ -134,12 +164,4 @@ const alertMessage = () => {
 					$(this).removeClass('show')
 				})
 		})
-}
-
-export {
-	renderForecast,
-	renderRecentSearches,
-	removeSearch,
-	getRandomCity,
-	locate,
 }

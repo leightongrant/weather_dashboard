@@ -26,12 +26,6 @@ const highlight = async (lat, lon) => {
 			}
 		})
 
-		// <div><img src="https://openweathermap.org/img/wn/${today.icon}.png" alt="${today.description}"/></div>
-		// <div><i class="fa-solid fa-wind"></i>  ${forecast.wind} KPH</div>
-		// <div class="fw-semibold" fs-6>${forecast.date}</div>
-		// <div><i class="fa-solid fa-droplet"></i>  ${forecast.humidity} %</div>
-		// <div><i class="fa-solid fa-temperature-three-quarters"></i>  ${forecast.temp} &deg;C</div>
-
 		const today = filterdData[0]
 		const condition = await getBackground(`${today.description}`)
 		const hours = filterdData.map(forecast => {

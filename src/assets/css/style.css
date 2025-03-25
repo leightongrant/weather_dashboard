@@ -19,6 +19,11 @@ body {
 	background: transparent;
 	height: 100vh;
 }
+.dashboard-container {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	min-height: 100vh;
+}
 
 .dashboard-wrapper {
 	color: hsla(0, 0%, 100%, 0.87);
