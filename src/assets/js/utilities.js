@@ -127,7 +127,6 @@ export const getCityName = async (lat, lon) => {
 			throw new Error('Network response was not ok')
 		}
 		const data = await response.json()
-		console.log(data.address)
 		const neighbourhood = data.address?.neighbourhood
 		const town = data.address?.town
 		const city = data.address?.city
