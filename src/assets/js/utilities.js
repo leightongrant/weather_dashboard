@@ -119,14 +119,14 @@ export const locate = async () => {
 
 export const getCityName = async (lat, lon) => {
 	try {
-		const url = `https://geocode.maps.co/reverse?lat=${lat}&lon=${lon}&api_key=${
-			import.meta.env.VITE_GEOCODING_API_KEY
-		}`
+		const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`
+
 		const response = await fetch(url)
 		if (!response.ok) {
 			throw new Error('Network response was not ok')
 		}
 		const data = await response.json()
+
 		const neighbourhood = data.address?.neighbourhood
 		const town = data.address?.town
 		const city = data.address?.city
